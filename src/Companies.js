@@ -4,12 +4,11 @@ import Search from './Search';
 
 class Companies extends Component {
 
-    //we need search component
-    //we need company card
     render() {
         return (
             <div>
                 <Search />
+                {/* {FIXME map over list of copmanies} */}
                 <CompanyCard />
             </div>
         );

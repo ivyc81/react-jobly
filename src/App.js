@@ -10,9 +10,13 @@ class App extends Component {
       <BrowserRouter>
         <nav>
           <NavLink exact to="/">Jobly </NavLink>
-        </nav>  
+          <NavLink exact to="/companies">Companies </NavLink>
+          <NavLink exact to="/jobs">Jobs </NavLink>
+          <NavLink exact to="/profile">Profile </NavLink>
+          <NavLink exact to="/">Log out </NavLink>
+        </nav>
         <Routes />
-        
+
       </BrowserRouter>
       </div>
     );
