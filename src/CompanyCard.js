@@ -5,9 +5,9 @@ class CompanyCard extends Component {
     render() {
         return (
             <div>
-                <Link to="/companies/name">
-                    <h2>THIS IS A COMPANY CARD</h2>
-                    <p>NEED INFORMATION ABOUT COMPANY PROPS HERE</p>
+                <Link to={`/companies/${this.props.name}`}>
+                    <h2>{this.props.name}</h2>
+                    <p>{this.props.description}</p>
                 </Link>
             </div>
         );

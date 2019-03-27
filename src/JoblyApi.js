@@ -1,7 +1,5 @@
 import axios from "axios";
 
-
-
 class JoblyApi {
     static async request(endpoint, paramsOrData = {}, verb = "get") {
       paramsOrData._token = ( // for now, hardcode token for "testuser"
@@ -27,11 +25,24 @@ class JoblyApi {
         throw Array.isArray(message) ? message : [message];
       }
     }
-
+    //Get A company
     static async getCompany(handle) {
       let res = await this.request(`companies/${handle}`);
       return res.company;
     }
+
+    //get all companies
+    static async getCompanies() {
+        let res = await this.request(`companies`);
+        return res.companies;
+      }
+
+    //search for results by search term
+    static async searchCompanies(searchTerm){
+        let res = await this.request(`companies`, { search: searchTerm});
+        return res.companies;
+    }
+
   }
 
   export default JoblyApi;
