@@ -25,6 +25,7 @@ class JoblyApi {
         throw Array.isArray(message) ? message : [message];
       }
     }
+
     //Get A company
     static async getCompany(handle) {
       let res = await this.request(`companies/${handle}`);
@@ -39,8 +40,26 @@ class JoblyApi {
 
     //search for results by search term
     static async searchCompanies(searchTerm){
-        let res = await this.request(`companies`, { search: searchTerm});
+        let res = await this.request(`companies`, { search: searchTerm });
         return res.companies;
+    }
+
+    //Get A job
+    static async getJob(id) {
+      let res = await this.request(`jobs/${id}`);
+      return res.job;
+    }
+
+    //get all jobs
+    static async getJobs() {
+        let res = await this.request(`jobs`);
+        return res.jobs;
+      }
+
+    //search for results by search term
+    static async searchJobs(searchTerm){
+        let res = await this.request(`jobs`, { search: searchTerm });
+        return res.jobs;
     }
 
   }

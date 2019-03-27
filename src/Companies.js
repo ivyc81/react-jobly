@@ -23,7 +23,7 @@ class Companies extends Component {
 
     render() {
         let companies = this.state.companies.map( c => (
-            <CompanyCard key={c.handle} name={c.name} description={c.description} logo_url={c.logo_url}/>
+            <CompanyCard key={c.handle} handle={c.handle} name={c.name} description={c.description} logo_url={c.logo_url}/>
         ));
         return (
             <div>

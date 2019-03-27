@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { NavLink, BrowserRouter, Switch, Route, Link} from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import Home from './Home';
 import Companies from './Companies';
 import Company from './Company';
@@ -14,7 +14,7 @@ class Routes extends Component {
                 <Switch>
                     <Route exact path="/" render={ ()=> <Home /> }/>
                     <Route exact path="/companies" render={() =>  <Companies /> }/>
-                    <Route exact path="/companies/:name" render={ (rtProps) => <Company {...rtProps}/> }/>
+                    <Route exact path="/companies/:handle" render={ (rtProps) => <Company handle={ rtProps.match.params.handle }/> }/>
                     <Route exact path="/jobs" render={ () => <Jobs /> }/>
                     <Route exact path="/profile" render={ () => <Profile /> }/>
                     <Route exact path="/login" render={ () => <Login /> }/>
