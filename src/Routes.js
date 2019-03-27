@@ -8,21 +8,23 @@ import Profile from './Profile';
 import Login from './Login';
 
 class Routes extends Component {
-    render() {
-        return (
-            <div>
-                <Switch>
-                    <Route exact path="/" render={ ()=> <Home /> }/>
-                    <Route exact path="/companies" render={() =>  <Companies /> }/>
-                    <Route exact path="/companies/:handle" render={ (rtProps) => <Company handle={ rtProps.match.params.handle }/> }/>
-                    <Route exact path="/jobs" render={ () => <Jobs /> }/>
-                    <Route exact path="/profile" render={ () => <Profile /> }/>
-                    <Route exact path="/login" render={ () => <Login /> }/>
-                </Switch>
+  render() {
+    return (
+      <div>
+        <Switch>
+          <Route exact path="/" render={() => <Home />} />
+          <Route exact path="/companies" render={() => <Companies />} />
+          <Route exact path="/companies/:handle"
+                 render={(rtProps) =>
+                 <Company handle={rtProps.match.params.handle} />} />
+          <Route exact path="/jobs" render={() => <Jobs />} />
+          <Route exact path="/profile" render={() => <Profile />} />
+          <Route exact path="/login" render={() => <Login />} />
+        </Switch>
 
-            </div>
-        );
-    }
+      </div>
+    );
+  }
 }
 
 export default Routes;
