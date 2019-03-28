@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import JobCard from './JobCard';
 import JoblyApi from './JoblyApi';
+import Alert from './Alert';
 
 class Company extends Component {
   constructor(props) {
@@ -9,17 +10,26 @@ class Company extends Component {
       jobs: [],
       description: '',
       name: '',
+      errorMessage: '',
+      isLoading: true,
     }
   }
 
   async componentDidMount() {
-    console.log('handle', this.props.handle)
-    let company = await JoblyApi.getCompany(this.props.handle);
-    this.setState({
-      jobs: company.jobs,
-      description: company.description,
-      name: company.name
-    });
+    try{
+      let company = await JoblyApi.getCompany(this.props.handle);
+      console.log('company', company)
+      this.setState({
+        jobs: company.jobs,
+        description: company.description,
+        name: company.name,
+        isLoading: false,
+      });
+    }
+    catch(err) {
+      console.log('error', err);
+      this.setState({ errorMessage: err, isLoading: false });
+    }
   }
 
   render() {
@@ -32,9 +42,21 @@ class Company extends Component {
 
     return (
       <div className='Company'>
-        <h2>{this.state.name}</h2>
-        <p>{this.state.description}</p>
-        {jobs}
+        {this.state.isLoading ? <p>...Loading </p>
+          :
+          <div>
+            {this.state.errMessage
+            ?
+              <div>
+                <h2>{this.state.name}</h2>
+                <p>{this.state.description}</p>
+                {jobs}
+              </div>
+            :
+              <Alert errors={this.state.errorMessage} />
+            }
+          </div>
+        }
       </div>
     );
   }

@@ -7,7 +7,11 @@ import Alert from './Alert';
 class Jobs extends Component {
   constructor(props) {
     super(props);
-    this.state = { jobs: [], errorMessage: "", isLoading: true };
+    this.state = {
+      jobs: [],
+      errorMessage: "",
+      isLoading: true,
+    };
     this.searchJobsByTerm = this.searchJobsByTerm.bind(this);
   }
 
@@ -21,7 +25,7 @@ class Jobs extends Component {
   }
 
   async searchJobsByTerm(searchTerm) {
-    
+
     let jobs = await JoblyApi.searchJobs(searchTerm);
     this.setState({ jobs });
   }
@@ -38,7 +42,7 @@ class Jobs extends Component {
       <div className='Jobs'>
         {this.state.isLoading ? <p>...Loading</p> :
           <div>
-            {localStorage.getItem('token') !== null 
+            {localStorage.getItem('token') !== null
             ?
               <div>
                 <Search triggerSearch={ this.searchJobsByTerm } />

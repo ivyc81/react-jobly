@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
 import Alert from './Alert';
-const DEFAULT_STATE_VALUES = { showLogin: true,
-                               error: false,
-                               username: '',
-                               password: '',
-                               firstname: '',
-                               lastname: '',
-                               email: '' };
+const DEFAULT_STATE_VALUES = {
+  showLogin: true,
+  error: false,
+  username: '',
+  password: '',
+  firstname: '',
+  lastname: '',
+  email: '',
+};
+
 class Login extends Component {
   constructor(props) {
     super(props);
-    this.state = DEFAULT_STATE_VALUES;
+    this.state = {...DEFAULT_STATE_VALUES};
     this.handleChange = this.handleChange.bind(this);
     this.showLogin = this.showLogin.bind(this);
     this.showSignup = this.showSignup.bind(this);
@@ -18,12 +21,17 @@ class Login extends Component {
   }
 
   showLogin() {
-    this.setState(() => ({ ...DEFAULT_STATE_VALUES, showLogin: true }));
+    this.setState(() => ({
+      ...DEFAULT_STATE_VALUES,
+      showLogin: true,
+      }));
   }
 
   showSignup() {
-    this.setState(() => ({ ...DEFAULT_STATE_VALUES, showLogin: false }));
-
+    this.setState(() => ({
+      ...DEFAULT_STATE_VALUES,
+      showLogin: false,
+    }));
   }
 
   handleChange(evt) {
@@ -32,16 +40,17 @@ class Login extends Component {
 
   async handleSubmit(evt){
     evt.preventDefault();
-    this.state.showLogin?
-    await this.props.triggerLogin(this.state) :
-    await this.props.triggerSignup(this.state);
-    this.props.isError ? this.setState({error: this.props.isError}): this.props.history.push('/jobs');
+    this.state.showLogin
+      ? await this.props.triggerLogin(this.state)
+      : await this.props.triggerSignup(this.state);
+    this.props.isError
+      ? this.setState({error: this.props.isError})
+      : this.props.history.push('/jobs');
   }
 
   componentWillUnmount(){
     this.setState({ error: false });
   }
-
 
   render() {
     return (
@@ -85,7 +94,12 @@ class Login extends Component {
                      value={this.state.email} /><br />
             </div>
           }
-          {this.state.error ? <Alert errors={this.state.error}/> : null}
+          {this.state.error
+            ?
+              <Alert errors={this.state.error}/>
+            :
+              null
+          }
           <button>Submit</button>
         </form>
       </div>

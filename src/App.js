@@ -3,13 +3,14 @@ import Routes from './Routes';
 import { BrowserRouter, NavLink } from 'react-router-dom';
 import './App.css';
 import JoblyApi from './JoblyApi';
-import Alert from './Alert';
 
 class App extends Component {
   constructor(props){
     super(props);
-    this.state= { isLoggedIn: false,
-                  logInError: false };
+    this.state= {
+      isLoggedIn: false,
+      logInError: false,
+    };
     this.login = this.login.bind(this);
     this.signup = this.signup.bind(this);
     this.logout = this.logout.bind(this);
@@ -29,7 +30,13 @@ class App extends Component {
   async signup(obj){
     try{
       const {username, password, firstname, lastname, email} = obj;
-      let token = await JoblyApi.signup({username, password, first_name: firstname, last_name: lastname, email});
+      let token = await JoblyApi.signup({
+        username,
+        password,
+        first_name: firstname,
+        last_name: lastname,
+        email,
+      });
       localStorage.setItem('token', token );
       this.setState({isLoggedIn: true});
     }
@@ -69,7 +76,10 @@ class App extends Component {
             <NavLink exact to="/login">Login</NavLink>
           }
         </nav>
-        <Routes isLoggedIn={this.state.isLoggedIn} isError={this.state.logInError} triggerLogin={this.login} triggerSignup={this.signup}/>
+        <Routes isLoggedIn={this.state.isLoggedIn}
+                isError={this.state.logInError}
+                triggerLogin={this.login}
+                triggerSignup={this.signup}/>
 
       </BrowserRouter>
       </div>
