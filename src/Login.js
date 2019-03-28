@@ -16,6 +16,7 @@ class Login extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.showLogin = this.showLogin.bind(this);
     this.showSignup = this.showSignup.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   showLogin() {
@@ -27,7 +28,24 @@ class Login extends Component {
   }
 
   handleChange(evt) {
-    this.setState({ [evt.target.name]: evt.target.value })
+    this.setState({ [evt.target.name]: evt.target.value });
+  
+  }
+
+  async handleSubmit(evt){
+    evt.preventDefault();
+    await this.props.triggerLogin(this.state);
+    //can take out setState
+    // this.setState( { 
+    //   isLogin: true,
+    //   error: false,
+    //   username: '',
+    //   password: '',
+    //   firstname: '',
+    //   lastname: '',
+    //   email: '',
+    // });
+    this.props.history.push('/jobs');
   }
 
 
@@ -36,7 +54,7 @@ class Login extends Component {
       <div>
         <button onClick={this.showLogin}>Login</button>
         <button onClick={this.showSignup}>Sign up</button>
-        <form >
+        <form onSubmit={this.handleSubmit}>
           <label htmlFor='username'>Username</label>
           <input id='username'
                  name='username'

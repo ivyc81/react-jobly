@@ -11,7 +11,9 @@ class Jobs extends Component {
   }
 
   async componentDidMount() {
+    
     let jobs = await JoblyApi.getJobs();
+   
     this.setState({ jobs });
   }
 
