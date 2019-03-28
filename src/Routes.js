@@ -36,7 +36,7 @@ class Routes extends Component {
                         handle={rtProps.match.params.handle} />} />
               <Route exact path="/jobs" render={() => <Jobs />} />
               <Route exact path="/profile"
-                    render={() => <Profile />} />
+                    render={() => <Profile currUser={this.props.currUser} triggerUpdate={this.props.triggerUpdate}/>} />
             </div>
           :
             <Redirect to='/login' />

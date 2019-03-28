@@ -39,13 +39,15 @@ class Login extends Component {
   }
 
   async handleSubmit(evt){
+    
     evt.preventDefault();
     this.state.showLogin
       ? await this.props.triggerLogin(this.state)
       : await this.props.triggerSignup(this.state);
-    this.props.isError
+     this.props.isError
       ? this.setState({error: this.props.isError})
       : this.props.history.push('/jobs');
+      
   }
 
   componentWillUnmount(){

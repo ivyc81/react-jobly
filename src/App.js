@@ -9,13 +9,13 @@ class App extends Component {
     super(props);
     this.state= {
       isLoading: true,
-      isLoggedIn: false,
       logInError: false,
       currUser: null,
     };
     this.login = this.login.bind(this);
     this.signup = this.signup.bind(this);
     this.logout = this.logout.bind(this);
+    this.updateProfile = this.updateProfile.bind(this);
   }
 
   async componentDidMount(){
@@ -33,12 +33,15 @@ class App extends Component {
     }
   }
 
+  
+
   async login(obj){
     try{
       let token = await JoblyApi.login(obj.username, obj.password);
       localStorage.setItem('token', token );
       localStorage.setItem('username', obj.username);
-      this.setState( {isLoggedIn: true, logInError: false});
+      const currUser = await JoblyApi.getCurrUserInfo(obj.username);
+      this.setState( {currUser, logInError: false});
     }
     catch(err){
       this.setState({ logInError: err});
@@ -57,7 +60,8 @@ class App extends Component {
       });
       localStorage.setItem('token', token );
       localStorage.setItem('username', obj.username);
-      this.setState({isLoggedIn: true});
+      const currUser = await JoblyApi.getCurrUserInfo(obj.username);
+      this.setState({ currUser });
     }
     catch(err){
       this.setState({ logInError: err });
@@ -65,8 +69,20 @@ class App extends Component {
   }
 
   logout(){
-    this.setState({isLoggedIn: false });
+    this.setState({ currUser: null });
     localStorage.clear();
+  }
+
+  async updateProfile(obj){
+   const { username, firstname, lastname, email, photoUrl} = obj;
+    let userInfo;
+   if(photoUrl === ''){
+     userInfo = await JoblyApi.updateUserInfo({username, first_name: firstname, last_name: lastname, email});
+   }
+   else{
+     userInfo = await JoblyApi.updateUserInfo({username, first_name: firstname, last_name: lastname, email, photo_url: photoUrl});
+   }
+    this.setState( {currUser: userInfo} );
   }
 
   render() {
@@ -100,7 +116,8 @@ class App extends Component {
         <Routes currUser={this.state.currUser}
                 isError={this.state.logInError}
                 triggerLogin={this.login}
-                triggerSignup={this.signup}/>
+                triggerSignup={this.signup} 
+                triggerUpdate= {this.updateProfile}/>
 
       </BrowserRouter>
     }

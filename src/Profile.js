@@ -4,27 +4,25 @@ import Alert from './Alert';
 class Login extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      error: false,
-      username: '',
-      password: '',
-      firstname: '',
-      lastname: '',
-      email: '',
-      photoUrl: '',
-    };
+    this.state = this.setDefaultStates();
     this.handleChange = this.handleChange.bind(this);
-    this.showLogin = this.showLogin.bind(this);
-    this.showSignup = this.showSignup.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    
   }
 
-  showLogin() {
-    this.setState(() => ({ isLogin: true }));
+  setDefaultStates(){
+    const { username, email, first_name, last_name, photo_url } = this.props.currUser;
+    
+    return { username, email, firstname: first_name, lastname: last_name, photoUrl: photo_url, error: false };
   }
 
-  showSignup() {
-    this.setState(() => ({ isLogin: false }));
+  async handleSubmit(evt) {
+    evt.preventDefault();
+    await this.props.triggerUpdate(this.state);
+    this.setState(() => this.setDefaultStates());
   }
+
+  
 
   handleChange(evt) {
     this.setState({ [evt.target.name]: evt.target.value })
@@ -35,39 +33,39 @@ class Login extends Component {
     return (
       <div>
         <h2>Profile</h2>
-        <form >
+        <form onSubmit={this.handleSubmit}>
           <label htmlFor='username'>Username</label>
-          <p>FIXME username from props</p>
+          <p>{this.state.username}</p>
 
           <label htmlFor='firstname'>First name</label>
           <input id='firstname'
                  name='firstname'
                  onChange={this.handleChange}
-                 value={this.state.LoginTerm} /><br />
+                 value={this.state.firstname} /><br />
 
           <label htmlFor='lastname'>Last name</label>
           <input id='lastname'
                  name='lastname'
                  onChange={this.handleChange}
-                 value={this.state.LoginTerm} /><br />
+                 value={this.state.lastname} /><br />
 
           <label htmlFor='email'>Email</label>
           <input id='email'
                  name='email'
                  onChange={this.handleChange}
-                 value={this.state.LoginTerm} /><br />
+                 value={this.state.email} /><br />
 
           <label htmlFor='photoUrl'>Photo URL</label>
           <input id='photoUrl'
                  name='photoUrl'
                  onChange={this.handleChange}
-                 value={this.state.LoginTerm} /><br />
+                 value={this.state.photoUrl} /><br />
 
           <label htmlFor='password'>Password</label>
           <input id='password'
                  name='password'
                  onChange={this.handleChange}
-                 value={this.state.LoginTerm} /><br />
+                 value={this.state.password} /><br />
 
           {this.state.error ? <Alert /> : null}
           <button>Submit</button>
