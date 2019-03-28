@@ -16,7 +16,7 @@ class Routes extends Component {
         <Switch>
           <Route exact path="/"
                 render={() =>
-                  <Home isLoggedIn={this.props.isLoggedIn} />} />
+                  <Home currUser={this.props.currUser} />} />
           <Route exact path="/login"
                 render={(rtProps) =>
                   <Login history={rtProps.history}
@@ -25,7 +25,7 @@ class Routes extends Component {
                         triggerSignup={this.props.triggerSignup}
                   />}
           />
-          {this.props.isLoggedIn
+          {this.props.currUser
           ?
             <div>
               <Route exact path="/companies"
@@ -39,7 +39,7 @@ class Routes extends Component {
                     render={() => <Profile />} />
             </div>
           :
-            <Redirect to='/' />
+            <Redirect to='/login' />
           }
         </Switch>
       </div>

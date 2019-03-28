@@ -43,7 +43,7 @@ class Companies extends Component {
       <div className='Companies'>
       { this.state.isLoading ? <p>...Loading</p> :
         <div>
-        {localStorage.getItem('token') !== null
+        {!this.state.errorMessage
         ?
             <div>
             <Search triggerSearch={ this.searchCompaniesByTerm } />

@@ -18,7 +18,6 @@ class Company extends Component {
   async componentDidMount() {
     try{
       let company = await JoblyApi.getCompany(this.props.handle);
-      console.log('company', company)
       this.setState({
         jobs: company.jobs,
         description: company.description,
@@ -27,7 +26,6 @@ class Company extends Component {
       });
     }
     catch(err) {
-      console.log('error', err);
       this.setState({ errorMessage: err, isLoading: false });
     }
   }
@@ -45,7 +43,7 @@ class Company extends Component {
         {this.state.isLoading ? <p>...Loading </p>
           :
           <div>
-            {this.state.errMessage
+            {!this.state.errorMessage
             ?
               <div>
                 <h2>{this.state.name}</h2>

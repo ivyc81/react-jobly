@@ -8,18 +8,36 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state= {
+      isLoading: true,
       isLoggedIn: false,
       logInError: false,
+      currUser: null,
     };
     this.login = this.login.bind(this);
     this.signup = this.signup.bind(this);
     this.logout = this.logout.bind(this);
   }
 
+  async componentDidMount(){
+    if(localStorage.getItem('token')){
+      const currUsername = localStorage.getItem('username');
+      const currUser = await JoblyApi.getCurrUserInfo(currUsername);
+      this.setState({
+        currUser,
+        isLoading: false,
+      })
+    } else {
+      this.setState({
+        isLoading: false,
+      })
+    }
+  }
+
   async login(obj){
     try{
       let token = await JoblyApi.login(obj.username, obj.password);
       localStorage.setItem('token', token );
+      localStorage.setItem('username', obj.username);
       this.setState( {isLoggedIn: true, logInError: false});
     }
     catch(err){
@@ -38,6 +56,7 @@ class App extends Component {
         email,
       });
       localStorage.setItem('token', token );
+      localStorage.setItem('username', obj.username);
       this.setState({isLoggedIn: true});
     }
     catch(err){
@@ -58,11 +77,13 @@ class App extends Component {
 
     return (
       <div className="App">
+      {this.state.isLoading? <p>...Loading</p>
+      :
       <BrowserRouter>
         <nav>
         <NavLink exact to="/"
                  activeStyle={activeStyle} >Jobly </NavLink>
-          { this.state.isLoggedIn ?
+          { this.state.currUser ?
           <div>
             <NavLink exact to="/companies"
                     activeStyle={activeStyle} >Companies </NavLink>
@@ -76,12 +97,13 @@ class App extends Component {
             <NavLink exact to="/login">Login</NavLink>
           }
         </nav>
-        <Routes isLoggedIn={this.state.isLoggedIn}
+        <Routes currUser={this.state.currUser}
                 isError={this.state.logInError}
                 triggerLogin={this.login}
                 triggerSignup={this.signup}/>
 
       </BrowserRouter>
+    }
       </div>
     );
   }

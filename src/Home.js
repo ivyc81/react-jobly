@@ -12,9 +12,9 @@ class Home extends Component {
       <div>
         <h1>Jobly</h1>
         <p>All the jobs in one, convenient place.</p>
-        { this.props.isLoggedIn
+        { this.props.currUser
         ?
-          null
+          <p>Welcome {this.props.currUser.first_name}</p>
         :
          <button> <Link to='/login' > Login </Link></button>
         }
