@@ -3,17 +3,21 @@ import { Link } from 'react-router-dom';
 
 class Home extends Component {
 
-  //handle click to show login form  
+  //handle click to show login form
   handleClick(evt){
-    
+
   }
   render() {
     return (
       <div>
         <h1>Jobly</h1>
         <p>All the jobs in one, convenient place.</p>
-       <Link to='/login' > Login </Link>
-
+        { this.props.isLoggedIn
+        ?
+          null
+        :
+          <Link to='/login' > Login </Link>
+        }
       </div>
     );
   }

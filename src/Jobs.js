@@ -11,10 +11,12 @@ class Jobs extends Component {
   }
 
   async componentDidMount() {
-    
-    let jobs = await JoblyApi.getJobs();
-   
-    this.setState({ jobs });
+    try{
+      let jobs = await JoblyApi.getJobs();
+      this.setState({ jobs });
+    } catch(err) {
+
+    }
   }
 
   async searchJobsByTerm(searchTerm) {

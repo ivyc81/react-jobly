@@ -11,20 +11,20 @@ import Login from './Login';
 class Routes extends Component {
 
   //call server to get token and store in localstorage
- 
+
 
   render() {
     return (
       <div>
         <Switch>
-          <Route exact path="/" render={() => <Home />} />
+          <Route exact path="/" render={() => <Home isLoggedIn={this.props.isLoggedIn} />} />
           <Route exact path="/companies" render={() => <Companies />} />
           <Route exact path="/companies/:handle"
                  render={(rtProps) =>
                  <Company handle={rtProps.match.params.handle} />} />
           <Route exact path="/jobs" render={() => <Jobs />} />
           <Route exact path="/profile" render={() => <Profile />} />
-          <Route exact path="/login" render={(rtProps) => <Login history={rtProps.history} triggerLogin={this.props.triggerLogin} />} />
+          <Route exact path="/login" render={(rtProps) => <Login history={rtProps.history} triggerLogin={this.props.triggerLogin} triggerSignup={this.props.triggerSignup}/>} />
         </Switch>
 
       </div>

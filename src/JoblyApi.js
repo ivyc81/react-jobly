@@ -69,6 +69,10 @@ class JoblyApi {
         return res.token;
     }
 
+    static async signup(userObj){
+        let res = await this.request('users', userObj, 'post');
+        return res.token;
+    }
   }
 
   export default JoblyApi;

@@ -29,14 +29,15 @@ class Login extends Component {
 
   handleChange(evt) {
     this.setState({ [evt.target.name]: evt.target.value });
-  
   }
 
   async handleSubmit(evt){
     evt.preventDefault();
-    await this.props.triggerLogin(this.state);
+    this.state.isLogin?
+    await this.props.triggerLogin(this.state) :
+    await this.props.triggerSignup(this.state);
     //can take out setState
-    // this.setState( { 
+    // this.setState( {
     //   isLogin: true,
     //   error: false,
     //   username: '',
