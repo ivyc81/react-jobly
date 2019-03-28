@@ -24,7 +24,7 @@ class Routes extends Component {
                  <Company handle={rtProps.match.params.handle} />} />
           <Route exact path="/jobs" render={() => <Jobs />} />
           <Route exact path="/profile" render={() => <Profile />} />
-          <Route exact path="/login" render={(rtProps) => <Login history={rtProps.history} triggerLogin={this.props.triggerLogin} triggerSignup={this.props.triggerSignup}/>} />
+          <Route exact path="/login" render={(rtProps) => <Login history={rtProps.history} triggerLogin={this.props.triggerLogin} isError={this.props.isError} triggerSignup={this.props.triggerSignup}/>} />
         </Switch>
 
       </div>

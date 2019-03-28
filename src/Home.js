@@ -16,7 +16,7 @@ class Home extends Component {
         ?
           null
         :
-          <Link to='/login' > Login </Link>
+         <button> <Link to='/login' > Login </Link></button>
         }
       </div>
     );

@@ -1,18 +1,16 @@
 import React, { Component } from 'react';
 import Alert from './Alert';
-
+const DEFAULT_STATE_VALUES = { showLogin: true,
+                               error: false,
+                               username: '',
+                               password: '',
+                               firstname: '',
+                               lastname: '',
+                               email: '' };
 class Login extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      isLogin: true,
-      error: false,
-      username: '',
-      password: '',
-      firstname: '',
-      lastname: '',
-      email: '',
-    };
+    this.state = DEFAULT_STATE_VALUES;
     this.handleChange = this.handleChange.bind(this);
     this.showLogin = this.showLogin.bind(this);
     this.showSignup = this.showSignup.bind(this);
@@ -20,11 +18,12 @@ class Login extends Component {
   }
 
   showLogin() {
-    this.setState(() => ({ isLogin: true }));
+    this.setState(() => ({ ...DEFAULT_STATE_VALUES, showLogin: true }));
   }
 
   showSignup() {
-    this.setState(() => ({ isLogin: false }));
+    this.setState(() => ({ ...DEFAULT_STATE_VALUES, showLogin: false }));
+
   }
 
   handleChange(evt) {
@@ -33,20 +32,14 @@ class Login extends Component {
 
   async handleSubmit(evt){
     evt.preventDefault();
-    this.state.isLogin?
+    this.state.showLogin?
     await this.props.triggerLogin(this.state) :
     await this.props.triggerSignup(this.state);
-    //can take out setState
-    // this.setState( {
-    //   isLogin: true,
-    //   error: false,
-    //   username: '',
-    //   password: '',
-    //   firstname: '',
-    //   lastname: '',
-    //   email: '',
-    // });
-    this.props.history.push('/jobs');
+    this.props.isError ? this.setState({error: this.props.isError}): this.props.history.push('/jobs');
+  }
+
+  componentWillUnmount(){
+    this.setState({ error: false });
   }
 
 
@@ -60,15 +53,15 @@ class Login extends Component {
           <input id='username'
                  name='username'
                  onChange={this.handleChange}
-                 value={this.state.userName} /><br />
+                 value={this.state.username} /><br />
 
           <label htmlFor='password'>Password</label>
           <input id='password'
                  name='password'
                  onChange={this.handleChange}
-                 value={this.state.LoginTerm} /><br />
+                 value={this.state.password} /><br />
 
-          {this.state.isLogin
+          {this.state.showLogin
             ?
             null
             :
@@ -77,22 +70,22 @@ class Login extends Component {
               <input id='firstname'
                      name='firstname'
                      onChange={this.handleChange}
-                     value={this.state.LoginTerm} /><br />
+                     value={this.state.firstname} /><br />
 
               <label htmlFor='lastname'>Last name</label>
               <input id='lastname'
                      name='lastname'
                      onChange={this.handleChange}
-                     value={this.state.LoginTerm} /><br />
+                     value={this.state.lastname} /><br />
 
               <label htmlFor='email'>Email</label>
               <input id='email'
                      name='email'
                      onChange={this.handleChange}
-                     value={this.state.LoginTerm} /><br />
+                     value={this.state.email} /><br />
             </div>
           }
-          {this.state.error ? <Alert /> : null}
+          {this.state.error ? <Alert errors={this.state.error}/> : null}
           <button>Submit</button>
         </form>
       </div>

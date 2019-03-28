@@ -2,22 +2,29 @@ import React, { Component } from 'react';
 import CompanyCard from './CompanyCard';
 import Search from './Search';
 import JoblyApi from './JoblyApi';
+import Alert from './Alert';
 
 class Companies extends Component {
   constructor(props) {
     super(props);
-    this.state = { companies: [] };
+    this.state = { companies: [] , errorMessage: "", isLoading: true };
     this.searchCompaniesByTerm = this.searchCompaniesByTerm.bind(this);
   }
 
   async componentDidMount() {
-    let companies = await JoblyApi.getCompanies();
-    this.setState({ companies });
+    try{
+      let companies = await JoblyApi.getCompanies();
+      this.setState({ companies , isLoading: false});
+    }
+    catch(err){
+        this.setState({ errorMessage: err, isLoading: false });
+        
+    }
   }
 
   async searchCompaniesByTerm(searchTerm) {
     let companies = await JoblyApi.searchCompanies(searchTerm);
-    this.setState({ companies });
+    this.setState({ companies, isLoading: false });
   }
 
 
@@ -32,8 +39,20 @@ class Companies extends Component {
 
     return (
       <div className='Companies'>
-        <Search triggerSearch={ this.searchCompaniesByTerm } />
-        { companies }
+      { this.state.isLoading ? <p>...Loading</p> :
+        <div>
+        {localStorage.getItem('token') !== null
+        ? 
+            <div>
+            <Search triggerSearch={ this.searchCompaniesByTerm } /> 
+            { companies }
+            </div>
+        : 
+            <Alert errors={this.state.errorMessage}/>
+        } 
+        </div>
+     }
+        
       </div>
     );
   }
