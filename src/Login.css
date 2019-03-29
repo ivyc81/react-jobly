@@ -1,0 +1,57 @@
+.Login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; 
+    width: 50%;
+    height: 100vh;
+    margin: 100px auto auto auto;
+    box-sizing: border-box;
+
+
+}
+
+.Login .login-signup {
+    display: flex;
+    justify-content: flex-end;
+    width: 50%;
+}
+
+.Login .login-signup button {
+    border-radius: 10px 10px 0px 0px;
+}
+
+.Login .login-signup button:active {
+    border-radius: 10px 10px 0px 0px;
+    background-color: darkblue;
+}
+
+.Login .login-signup button:hover {
+    border-radius: 10px 10px 0px 0px;
+    background-color: darkblue;
+}
+
+.Login button {
+    background-color: blue;
+    color: white;
+    padding: 1em;
+}
+
+.Login form {
+    width: 50%;
+    padding: 5em 0 5em 0;
+    border: 1px solid lightgray;
+    background-color:  rgb(235, 235, 235);
+    box-sizing: border-box;
+}
+
+.Login label, .Login input {
+    width: 80%;
+    height: 2.5em;
+    margin-bottom: 1em;
+}
+
+.Login form button{
+    margin-top: 2em;
+    border-radius: 5px;
+}

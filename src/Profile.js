@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Alert from './Alert';
+import './Profile.css';
 
 class Login extends Component {
   constructor(props) {
@@ -31,37 +32,37 @@ class Login extends Component {
 
   render() {
     return (
-      <div>
+      <div className='Profile'>
         <h2>Profile</h2>
         <form onSubmit={this.handleSubmit}>
-          <label htmlFor='username'>Username</label>
+          <label htmlFor='username'><strong>Username</strong></label>
           <p>{this.state.username}</p>
 
-          <label htmlFor='firstname'>First name</label>
+          <label htmlFor='firstname'>First name</label> <br/>
           <input id='firstname'
                  name='firstname'
                  onChange={this.handleChange}
-                 value={this.state.firstname} /><br />
+                 value={this.state.firstname} /> <br/>
 
-          <label htmlFor='lastname'>Last name</label>
+          <label htmlFor='lastname'>Last name</label> <br/>
           <input id='lastname'
                  name='lastname'
                  onChange={this.handleChange}
                  value={this.state.lastname} /><br />
 
-          <label htmlFor='email'>Email</label>
+          <label htmlFor='email'>Email</label> <br />
           <input id='email'
                  name='email'
                  onChange={this.handleChange}
                  value={this.state.email} /><br />
 
-          <label htmlFor='photoUrl'>Photo URL</label>
+          <label htmlFor='photoUrl'>Photo URL</label> <br/>
           <input id='photoUrl'
                  name='photoUrl'
                  onChange={this.handleChange}
                  value={this.state.photoUrl} /><br />
 
-          <label htmlFor='password'>Password</label>
+          <label htmlFor='password'>Password</label> <br/>
           <input id='password'
                  name='password'
                  onChange={this.handleChange}

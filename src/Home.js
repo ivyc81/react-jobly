@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import './Home.css';
 
 class Home extends Component {
 
@@ -9,7 +10,7 @@ class Home extends Component {
   }
   render() {
     return (
-      <div>
+      <div className='Home'> 
         <h1>Jobly</h1>
         <p>All the jobs in one, convenient place.</p>
         { this.props.currUser

@@ -1,0 +1,15 @@
+.Jobs form {
+    width: 40%;
+    margin: 2.5em auto auto auto;
+}
+
+.Jobs input {
+    width: 65%;
+}
+
+.Jobs form button {
+    width: 10%;
+    background-color: blue;
+    color: white;
+    border-radius: 5px;
+}

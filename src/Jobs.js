@@ -3,6 +3,7 @@ import JobCard from './JobCard';
 import Search from './Search';
 import JoblyApi from './JoblyApi';
 import Alert from './Alert';
+import './Jobs.css';
 
 class Jobs extends Component {
   constructor(props) {

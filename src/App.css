@@ -8,6 +8,27 @@
   pointer-events: none;
 }
 
+nav {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid rgb(116, 113, 113);
+  background-color: rgb(235, 235, 235);
+}
+
+nav a {
+  margin-right: 3em;
+  text-decoration: none;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  color: blue;
+}
+
+nav > a{
+  margin-left: 3em;
+}
+
+
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -23,11 +44,4 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+

@@ -1,0 +1,11 @@
+.Home button {
+    background-color: blue;
+    border-radius: 5px;
+    padding: 0.8em;
+}
+
+.Home button a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.5em;
+}

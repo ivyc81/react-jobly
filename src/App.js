@@ -83,7 +83,8 @@ class App extends Component {
    else{
      userInfo = await JoblyApi.updateUserInfo({username, first_name: firstname, last_name: lastname, email, photo_url: photoUrl});
    }
-    this.setState( {currUser: userInfo} );
+    const currUser = await JoblyApi.getCurrUserInfo(username);
+    this.setState( {currUser} );
   }
 
   async applyToJob(id, username){
@@ -107,7 +108,7 @@ class App extends Component {
         <NavLink exact to="/"
                  activeStyle={activeStyle} >Jobly </NavLink>
           { this.state.currUser ?
-          <div>
+          <p>
             <NavLink exact to="/companies"
                     activeStyle={activeStyle} >Companies </NavLink>
             <NavLink exact to="/jobs"
@@ -115,7 +116,7 @@ class App extends Component {
             <NavLink exact to="/profile"
                     activeStyle={activeStyle} >Profile </NavLink>
             <NavLink exact to="/" onClick={this.logout}>Log out </NavLink>
-          </div>
+          </p>
           :
             <NavLink exact to="/login">Login</NavLink>
           }
