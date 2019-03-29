@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import './CompanyCard.css';
 const DEFAULT_LOGO_URL = 'http://www.jobdzire.in/img/comp-logo-default.png';
 
 class CompanyCard extends Component {

@@ -8,12 +8,12 @@ class Login extends Component {
     this.state = this.setDefaultStates();
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    
+
   }
 
   setDefaultStates(){
     const { username, email, first_name, last_name, photo_url } = this.props.currUser;
-    
+
     return { username, email, firstname: first_name, lastname: last_name, photoUrl: photo_url, error: false };
   }
 
@@ -23,7 +23,7 @@ class Login extends Component {
     this.setState(() => this.setDefaultStates());
   }
 
-  
+
 
   handleChange(evt) {
     this.setState({ [evt.target.name]: evt.target.value })
@@ -63,7 +63,8 @@ class Login extends Component {
                  value={this.state.photoUrl} /><br />
 
           <label htmlFor='password'>Password</label> <br/>
-          <input id='password'
+          <input type='password'
+                 id='password'
                  name='password'
                  onChange={this.handleChange}
                  value={this.state.password} /><br />

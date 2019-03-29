@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import JobCard from './JobCard';
 import JoblyApi from './JoblyApi';
 import Alert from './Alert';
+import './Company.css';
 
 class Company extends Component {
   constructor(props) {
@@ -44,10 +45,10 @@ class Company extends Component {
       <JobCard key={job.id}
                title={job.title}
                salary={job.salary}
-               equity={job.equity} 
+               equity={job.equity}
                id={job.id}
                currUser={this.props.currUser}
-               triggerApplyJob={this.props.triggerApplyJob} 
+               triggerApplyJob={this.props.triggerApplyJob}
                isApplied={isApplied}/>
     )});
         return jobs;

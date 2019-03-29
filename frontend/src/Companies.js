@@ -3,6 +3,7 @@ import CompanyCard from './CompanyCard';
 import Search from './Search';
 import JoblyApi from './JoblyApi';
 import Alert from './Alert';
+import './Companies.css';
 
 class Companies extends Component {
   constructor(props) {

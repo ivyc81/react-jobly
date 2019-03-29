@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './JobCard.css';
 
 class JobCard extends Component {
   constructor(props){
@@ -12,12 +13,12 @@ class JobCard extends Component {
   }
   render() {
     return (
-      <div>
+      <div className='JobCard'>
         <h2>{ this.props.title }</h2>
         <p>Salary: { this.props.salary }</p>
         <p>Equity: { this.props.equity }</p>
         {this.props.isApplied ?
-        <button> Applied </button>
+        <button style={{backgroundColor: 'brown'}}> Applied </button>
         :
         <button onClick={this.handleClick}> Apply </button>
         }

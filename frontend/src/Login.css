@@ -2,8 +2,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start; 
-    width: 50%;
+    justify-content: flex-start;
+    width: 80vw;
     height: 100vh;
     margin: 100px auto auto auto;
     box-sizing: border-box;
@@ -14,11 +14,12 @@
 .Login .login-signup {
     display: flex;
     justify-content: flex-end;
-    width: 50%;
+    width: 80%;
 }
 
 .Login .login-signup button {
     border-radius: 10px 10px 0px 0px;
+    font-size: 0.8em;
 }
 
 .Login .login-signup button:active {
@@ -38,7 +39,7 @@
 }
 
 .Login form {
-    width: 50%;
+    width: 80%;
     padding: 5em 0 5em 0;
     border: 1px solid lightgray;
     background-color:  rgb(235, 235, 235);
@@ -49,6 +50,7 @@
     width: 80%;
     height: 2.5em;
     margin-bottom: 1em;
+    font-size: 1em;
 }
 
 .Login form button{
