@@ -16,6 +16,7 @@ class App extends Component {
     this.signup = this.signup.bind(this);
     this.logout = this.logout.bind(this);
     this.updateProfile = this.updateProfile.bind(this);
+    this.applyToJob = this.applyToJob.bind(this);
   }
 
   async componentDidMount(){
@@ -85,6 +86,12 @@ class App extends Component {
     this.setState( {currUser: userInfo} );
   }
 
+  async applyToJob(id, username){
+    let msg = await JoblyApi.applyToJob(id, username);
+    const currUser = await JoblyApi.getCurrUserInfo(username);
+    this.setState({ currUser});
+  }
+
   render() {
     const activeStyle = {
       fontWeight: 'bold',
@@ -117,7 +124,8 @@ class App extends Component {
                 isError={this.state.logInError}
                 triggerLogin={this.login}
                 triggerSignup={this.signup} 
-                triggerUpdate= {this.updateProfile}/>
+                triggerUpdate= {this.updateProfile}
+                triggerApplyJob={this.applyToJob}/>
 
       </BrowserRouter>
     }

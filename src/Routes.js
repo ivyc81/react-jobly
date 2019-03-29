@@ -33,8 +33,12 @@ class Routes extends Component {
               <Route exact path="/companies/:handle"
                     render={(rtProps) =>
                       <Company
-                        handle={rtProps.match.params.handle} />} />
-              <Route exact path="/jobs" render={() => <Jobs />} />
+                        handle={rtProps.match.params.handle} 
+                        triggerApplyJob={this.props.triggerApplyJob} 
+                        currUser={this.props.currUser}
+                        />} />
+              <Route exact path="/jobs" render={() => <Jobs triggerApplyJob={this.props.triggerApplyJob}
+                                                            currUser={this.props.currUser} />} />
               <Route exact path="/profile"
                     render={() => <Profile currUser={this.props.currUser} triggerUpdate={this.props.triggerUpdate}/>} />
             </div>

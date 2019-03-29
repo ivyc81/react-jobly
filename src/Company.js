@@ -13,6 +13,7 @@ class Company extends Component {
       errorMessage: '',
       isLoading: true,
     }
+      this.renderJobCard = this.renderJobCard.bind(this);
   }
 
   async componentDidMount() {
@@ -30,13 +31,30 @@ class Company extends Component {
     }
   }
 
-  render() {
-    const jobs = this.state.jobs.map(job => (
+  renderJobCard(){
+    let appliedJobID = new Set();
+    this.props.currUser.jobs.forEach(job => appliedJobID.add(job.id) );
+    const jobs = this.state.jobs.map(job => {
+      let isApplied =false;
+
+      if(appliedJobID.has(job.id)){
+        isApplied=true;
+      }
+      return(
       <JobCard key={job.id}
                title={job.title}
                salary={job.salary}
-               equity={job.equity} />
-    ));
+               equity={job.equity} 
+               id={job.id}
+               currUser={this.props.currUser}
+               triggerApplyJob={this.props.triggerApplyJob} 
+               isApplied={isApplied}/>
+    )});
+        return jobs;
+  }
+
+  render() {
+    const jobs = this.renderJobCard();
 
     return (
       <div className='Company'>
