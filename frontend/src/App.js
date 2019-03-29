@@ -34,7 +34,7 @@ class App extends Component {
     }
   }
 
-  
+
 
   async login(obj){
     try{
@@ -124,7 +124,7 @@ class App extends Component {
         <Routes currUser={this.state.currUser}
                 isError={this.state.logInError}
                 triggerLogin={this.login}
-                triggerSignup={this.signup} 
+                triggerSignup={this.signup}
                 triggerUpdate= {this.updateProfile}
                 triggerApplyJob={this.applyToJob}/>
 
