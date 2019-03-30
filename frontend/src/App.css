@@ -2,24 +2,6 @@
   text-align: center;
 }
 
-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid rgb(116, 113, 113);
-  background-color: rgb(235, 235, 235);
-}
 
-nav a {
-  margin-right: 3em;
-  text-decoration: none;
-  color: blue;
-}
-
-nav>a:first-child{
-  margin-left: 3em;
-  font-size: 1.5em;
-  font-weight: bold;
-}
 
 

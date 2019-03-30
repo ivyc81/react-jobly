@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Routes from './Routes';
-import { BrowserRouter, NavLink } from 'react-router-dom';
+import Nav from './Nav';
+import { BrowserRouter } from 'react-router-dom';
 import './App.css';
 import JoblyApi from './JoblyApi';
 
@@ -33,8 +34,6 @@ class App extends Component {
       })
     }
   }
-
-
 
   async login(obj){
     try{
@@ -94,35 +93,13 @@ class App extends Component {
   }
 
   render() {
-    const activeStyle = {
-      fontWeight: 'bold',
-      color: 'blue',
-    }
-
     return (
       <div className="App">
       {this.state.isLoading? <p>...Loading</p>
       :
       <BrowserRouter>
-        <nav>
-        <NavLink exact to="/"
-                 activeStyle={activeStyle} >Jobly </NavLink>
-          { this.state.currUser ?
-          <p>
-            <NavLink exact to="/companies"
-                    activeStyle={activeStyle} >Companies </NavLink>
-            <NavLink exact to="/jobs"
-                    activeStyle={activeStyle} >Jobs </NavLink>
-            <NavLink exact to="/profile"
-                    activeStyle={activeStyle} >Profile </NavLink>
-            <NavLink exact to="/" onClick={this.logout}>Log out </NavLink>
-          </p>
-          :
-          <p>
-            <NavLink exact to="/login">Login</NavLink>
-          </p>
-          }
-        </nav>
+        <Nav currUser={ this.state.currUser }
+             triggerLogout={ this.logout } />
         <Routes currUser={this.state.currUser}
                 isError={this.state.logInError}
                 triggerLogin={this.login}

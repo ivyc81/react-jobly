@@ -1,0 +1,38 @@
+.Nav {
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgb(116, 113, 113);
+    background-color: rgb(235, 235, 235);
+    padding: 0 1vw 0 1vw;
+    height: 50px;
+    text-align: right;
+}
+
+.Nav>p{
+    width: 40%;
+}
+
+.Nav p .navItem {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.Nav a {
+    text-decoration: none;
+    color: blue;
+}
+
+.Nav>a:first-child {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.fas {
+    position: relative;
+    right: 3em;
+    align-self: flex-end;
+}
