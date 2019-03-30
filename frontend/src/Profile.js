@@ -8,7 +8,6 @@ class Login extends Component {
     this.state = this.setDefaultStates();
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-
   }
 
   setDefaultStates(){
@@ -26,7 +25,6 @@ class Login extends Component {
   handleChange(evt) {
     this.setState({ [evt.target.name]: evt.target.value })
   }
-
 
   render() {
     return (

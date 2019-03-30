@@ -75,10 +75,8 @@ class App extends Component {
   }
 
   async updateProfile(obj){
-    console.log('updateProfile in app')
    const { username, firstname, lastname, email, photoUrl} = obj;
     let userInfo;
-    console.log('photo_url', photoUrl);
    if(!photoUrl){
      userInfo = await JoblyApi.updateUserInfo({username, first_name: firstname, last_name: lastname, email});
    }
