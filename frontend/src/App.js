@@ -75,9 +75,11 @@ class App extends Component {
   }
 
   async updateProfile(obj){
+    console.log('updateProfile in app')
    const { username, firstname, lastname, email, photoUrl} = obj;
     let userInfo;
-   if(photoUrl === ''){
+    console.log('photo_url', photoUrl);
+   if(!photoUrl){
      userInfo = await JoblyApi.updateUserInfo({username, first_name: firstname, last_name: lastname, email});
    }
    else{
@@ -118,7 +120,9 @@ class App extends Component {
             <NavLink exact to="/" onClick={this.logout}>Log out </NavLink>
           </p>
           :
+          <p>
             <NavLink exact to="/login">Login</NavLink>
+          </p>
           }
         </nav>
         <Routes currUser={this.state.currUser}

@@ -23,8 +23,6 @@ class Login extends Component {
     this.setState(() => this.setDefaultStates());
   }
 
-
-
   handleChange(evt) {
     this.setState({ [evt.target.name]: evt.target.value })
   }
