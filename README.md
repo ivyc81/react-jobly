@@ -1,6 +1,6 @@
 # Jobly
-A Twitter Clone <br/>
-See it: https://warbler-less.herokuapp.com/
+An app that shows job postings and company list.<br/>
+See it: https://jobly-more.herokuapp.com
 
 ## Technologies
 Frontend:
